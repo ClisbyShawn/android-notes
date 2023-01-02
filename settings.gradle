@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "Note"
 include ':app'
 include ':feature:note'
+include ':feature:common'
