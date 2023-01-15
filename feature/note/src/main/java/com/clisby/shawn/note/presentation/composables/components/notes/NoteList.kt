@@ -1,6 +1,7 @@
-package com.clisby.shawn.note.presentation.composables.components
+package com.clisby.shawn.note.presentation.composables.components.notes
 
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,18 +16,24 @@ import com.clisby.shawn.note.presentation.model.NoteUi
 @Composable
 fun NoteList(notes: List<NoteUi>) {
 
-    LazyColumn(
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
-    ) {
-        items(
-            items = notes,
-            key = { noteUi ->
-                noteUi.id
+    notes.ifEmpty {
+        NoteListEmpty()
+    }
+
+    AnimatedVisibility(visible = notes.isNotEmpty()) {
+        LazyColumn(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            contentPadding = PaddingValues(start = 8.dp, end = 8.dp)
+        ) {
+            items(
+                items = notes,
+                key = { noteUi ->
+                    noteUi.id
+                }
+            ) { note ->
+                NoteItem(noteUi = note)
             }
-        ) { note ->
-            NoteItem(noteUi = note)
         }
     }
 }
@@ -36,8 +43,7 @@ fun NoteList(notes: List<NoteUi>) {
 @Composable
 fun PreviewNoteList() {
     NoteList(
-        notes =
-        listOf(
+        notes = listOf(
             NoteUi(id = 0, title = "Title", content = "Content"),
             NoteUi(id = 1, title = "Title #1", content = "Content"),
             NoteUi(id = 2, title = "Title #2", content = "Content"),
@@ -45,5 +51,14 @@ fun PreviewNoteList() {
             NoteUi(id = 4, title = "Title #4", content = "Content"),
             NoteUi(id = 5, title = "Title #5", content = "Content")
         )
+    )
+}
+
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewNoteListEmpty() {
+    NoteList(
+        notes = emptyList()
     )
 }
