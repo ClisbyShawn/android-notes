@@ -1,5 +1,6 @@
 package com.clisby.shawn.note.presentation.composables.components.notes
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,12 +10,16 @@ import com.clisby.shawn.note.presentation.composables.components.NoteHeaderSubTe
 import com.clisby.shawn.note.presentation.model.NoteUi
 
 @Composable
-fun NoteItem(noteUi: NoteUi) {
+fun NoteItem(
+    noteUi: NoteUi,
+    onNoteSelected: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(8.dp)
+            .clickable { onNoteSelected() }
     ) {
         NoteHeaderSubText(title = noteUi.title, subText = noteUi.content)
     }
@@ -29,6 +34,7 @@ fun PreviewNoteItem() {
             id = 0,
             title = "This is Note Title",
             content = "This is Note Content"
-        )
+        ),
+        onNoteSelected = {}
     )
 }

@@ -1,6 +1,5 @@
 package com.clisby.shawn.note.presentation.composables.components.notes
 
-
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,7 +13,10 @@ import androidx.compose.ui.unit.dp
 import com.clisby.shawn.note.presentation.model.NoteUi
 
 @Composable
-fun NoteList(notes: List<NoteUi>) {
+fun NoteList(
+    notes: List<NoteUi>,
+    onNoteSelected: () -> Unit
+) {
 
     notes.ifEmpty {
         NoteListEmpty()
@@ -32,7 +34,7 @@ fun NoteList(notes: List<NoteUi>) {
                     noteUi.id
                 }
             ) { note ->
-                NoteItem(noteUi = note)
+                NoteItem(noteUi = note, onNoteSelected)
             }
         }
     }
@@ -50,7 +52,8 @@ fun PreviewNoteList() {
             NoteUi(id = 3, title = "Title #3", content = "Content"),
             NoteUi(id = 4, title = "Title #4", content = "Content"),
             NoteUi(id = 5, title = "Title #5", content = "Content")
-        )
+        ),
+        onNoteSelected = {}
     )
 }
 
@@ -59,6 +62,7 @@ fun PreviewNoteList() {
 @Composable
 fun PreviewNoteListEmpty() {
     NoteList(
-        notes = emptyList()
+        notes = emptyList(),
+        onNoteSelected = {}
     )
 }

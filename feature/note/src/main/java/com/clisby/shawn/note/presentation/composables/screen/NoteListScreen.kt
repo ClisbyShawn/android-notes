@@ -21,13 +21,14 @@ import com.clisby.shawn.note.presentation.model.NoteUiListState
 @Composable
 fun NoteListScreen(
     state: NoteUiListState,
-    onAddNote: () -> Unit
+    onAddNote: () -> Unit,
+    onNoteSelected: () -> Unit
 ) {
     Scaffold(
         content = {
             when (state) {
                 is NoteUiListState.Success -> {
-                    NoteList(notes = state.notes)
+                    NoteList(notes = state.notes, onNoteSelected)
                 }
 
                 NoteUiListState.Loading -> {
@@ -60,7 +61,8 @@ fun PreviewSuccessNotes() {
                 NoteUi(id = 3, title = "Title #3", content = "Content"),
             )
         ),
-        onAddNote = {}
+        onAddNote = {},
+        onNoteSelected = {}
     )
 }
 
@@ -71,7 +73,8 @@ fun PreviewSuccessNotesEmpty() {
         state = NoteUiListState.Success(
             notes = emptyList()
         ),
-        onAddNote = {}
+        onAddNote = {},
+        onNoteSelected = {}
     )
 }
 
@@ -80,7 +83,8 @@ fun PreviewSuccessNotesEmpty() {
 fun PreviewLoadingNotes() {
     NoteListScreen(
         state = NoteUiListState.Loading,
-        onAddNote = {}
+        onAddNote = {},
+        onNoteSelected = {}
     )
 }
 
@@ -91,6 +95,7 @@ fun PreviewErrorNotes() {
         state = NoteUiListState.Error(
             errorMessage = "Uh-Oh! Error..."
         ),
-        onAddNote = {}
+        onAddNote = {},
+        onNoteSelected = {}
     )
 }
