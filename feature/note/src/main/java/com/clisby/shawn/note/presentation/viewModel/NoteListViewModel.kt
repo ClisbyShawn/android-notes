@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor(
+class NoteListViewModel @Inject constructor(
     private val noteRepo: NoteRepo
 ) : ViewModel() {
 
@@ -28,14 +28,6 @@ class NoteViewModel @Inject constructor(
                 started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5000),
                 initialValue = NoteUiListState.Loading
             )
-
-    fun onSaveNewNote(noteUi: NoteUi) {
-        viewModelScope.launch {
-            noteRepo.saveNote(
-                note = noteUi.toNoteDomain()
-            )
-        }
-    }
 
     fun onDeleteNote(noteUi: NoteUi) {
         viewModelScope.launch {

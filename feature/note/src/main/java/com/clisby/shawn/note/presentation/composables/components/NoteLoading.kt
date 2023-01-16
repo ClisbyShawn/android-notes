@@ -1,4 +1,4 @@
-package com.clisby.shawn.note.presentation.composables.components.notes
+package com.clisby.shawn.note.presentation.composables.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun NoteListLoading() {
+fun NoteLoading() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -24,5 +24,5 @@ fun NoteListLoading() {
 @Preview
 @Composable
 fun PreviewNoteListLoading() {
-    NoteListLoading()
+    NoteLoading()
 }
