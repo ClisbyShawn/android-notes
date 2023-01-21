@@ -20,7 +20,6 @@ fun NoteError(errorMessage: String) {
     }
 }
 
-
 @Preview
 @Composable
 fun PreviewNoteListScreenError() {

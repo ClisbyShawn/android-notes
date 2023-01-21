@@ -9,12 +9,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.clisby.shawn.note.presentation.composables.components.NoteLoading
 import com.clisby.shawn.note.presentation.composables.components.NoteError
+import com.clisby.shawn.note.presentation.composables.components.NoteLoading
 import com.clisby.shawn.note.presentation.composables.components.notes.NoteList
 import com.clisby.shawn.note.presentation.model.NoteUi
 import com.clisby.shawn.note.presentation.model.NoteUiListState
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -44,9 +43,9 @@ fun NoteListScreen(
             FloatingActionButton(onClick = onAddNote) {
                 Icon(Icons.Filled.Add, "Add Note")
             }
-        })
+        }
+    )
 }
-
 
 @Preview(showSystemUi = true)
 @Composable

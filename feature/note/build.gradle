@@ -65,6 +65,9 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     debugImplementation "androidx.compose.ui:ui-tooling"
 
+    //Constraint Layout Compose
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
     //Common/Core Module
     implementation project(path: ':feature:common')
 

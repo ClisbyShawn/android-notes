@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.clisby.shawn.note.data.local.model.NoteEntity
 import com.clisby.shawn.note.data.local.room.NoteRoomDatabase
 import com.clisby.shawn.note.data.local.room.dao.NoteEntityDao
+import java.io.IOException
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
@@ -16,7 +17,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
 class NoteRoomUnitTest {
@@ -43,7 +43,6 @@ class NoteRoomUnitTest {
         noteRoomDatabase.close()
     }
 
-
     @Test
     @Throws(Exception::class)
     fun writeAndReadNoteDatabase() = runBlocking {
@@ -61,7 +60,6 @@ class NoteRoomUnitTest {
         val newNoteEntity = NoteEntity(id = 1, title = "New Title", content = "New Content")
         noteEntityDao.insertNoteEntity(noteEntity = noteEntity)
         noteEntityDao.insertNoteEntity(noteEntity = newNoteEntity)
-
 
         val testedNote = noteEntityDao.getAllNotes().first().first()
         assertEquals(newNoteEntity, testedNote)

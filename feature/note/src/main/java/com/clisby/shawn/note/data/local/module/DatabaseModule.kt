@@ -10,7 +10,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
 @InstallIn(SingletonComponent::class)
 @Module
 object DatabaseModule {
@@ -24,7 +23,6 @@ object DatabaseModule {
         NoteRoomDatabase::class.java,
         "note_room_database"
     )
-
 
     @Singleton
     @Provides

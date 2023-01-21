@@ -25,7 +25,6 @@ fun NoteItem(
     }
 }
 
-
 @Preview
 @Composable
 fun PreviewNoteItem() {

@@ -14,12 +14,18 @@ fun NoteScreen(
 ) {
     when (state) {
         NoteUiDetailState.Loading -> NoteLoading()
-        NoteUiDetailState.NewNote -> NoteDetail(onNoteSaved = {})
-        is NoteUiDetailState.Existing -> NoteDetail(onNoteSaved = {})
+        NoteUiDetailState.NewNote -> NoteDetail(
+            onNoteSaved = {},
+            onTitleChanged = {},
+            onContentChanged = {}
+        )
+        is NoteUiDetailState.Existing -> NoteDetail(
+            onNoteSaved = {},
+            onTitleChanged = {},
+            onContentChanged = {})
         is NoteUiDetailState.Error -> NoteError(state.errorMessage)
     }
 }
-
 
 @Preview
 @Composable
@@ -32,7 +38,6 @@ fun PreviewLoadingNoteScreen() {
 fun PreviewErrorNoteScreen() {
     NoteScreen(NoteUiDetailState.Error(errorMessage = "Uh-Oh!"))
 }
-
 
 @Preview
 @Composable

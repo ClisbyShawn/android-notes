@@ -40,7 +40,6 @@ fun NoteList(
     }
 }
 
-
 @Preview(showSystemUi = true)
 @Composable
 fun PreviewNoteList() {
@@ -56,7 +55,6 @@ fun PreviewNoteList() {
         onNoteSelected = {}
     )
 }
-
 
 @Preview(showSystemUi = true)
 @Composable
