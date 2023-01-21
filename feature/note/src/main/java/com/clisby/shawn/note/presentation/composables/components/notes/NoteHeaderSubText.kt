@@ -16,7 +16,6 @@ fun NoteHeaderSubText(
     }
 }
 
-
 @Preview
 @Composable
 fun PreviewNoteHeaderSubText() {

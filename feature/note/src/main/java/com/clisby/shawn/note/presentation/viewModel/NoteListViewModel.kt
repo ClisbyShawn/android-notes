@@ -6,9 +6,9 @@ import com.clisby.shawn.note.domain.repo.NoteRepo
 import com.clisby.shawn.note.presentation.model.NoteUi
 import com.clisby.shawn.note.presentation.model.NoteUiListState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class NoteListViewModel @Inject constructor(

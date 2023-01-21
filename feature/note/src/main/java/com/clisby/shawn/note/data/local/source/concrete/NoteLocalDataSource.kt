@@ -3,8 +3,8 @@ package com.clisby.shawn.note.data.local.source.concrete
 import com.clisby.shawn.note.data.local.model.NoteEntity
 import com.clisby.shawn.note.data.local.room.dao.NoteEntityDao
 import com.clisby.shawn.note.data.local.source.NoteLocalSource
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class NoteLocalDataSource @Inject constructor(
     private val noteDao: NoteEntityDao

@@ -5,12 +5,12 @@ import com.clisby.shawn.note.data.local.model.NoteEntity
 import com.clisby.shawn.note.data.local.source.NoteLocalSource
 import com.clisby.shawn.note.domain.model.Note
 import com.clisby.shawn.note.domain.repo.NoteRepo
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class NoteRepository @Inject constructor(
     private val noteLocalSource: NoteLocalSource,

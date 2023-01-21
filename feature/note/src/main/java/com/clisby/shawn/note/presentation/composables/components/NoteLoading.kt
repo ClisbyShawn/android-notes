@@ -20,7 +20,6 @@ fun NoteLoading() {
     }
 }
 
-
 @Preview
 @Composable
 fun PreviewNoteListLoading() {
