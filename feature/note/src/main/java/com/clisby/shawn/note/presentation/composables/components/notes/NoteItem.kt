@@ -12,14 +12,14 @@ import com.clisby.shawn.note.presentation.model.NoteUi
 @Composable
 fun NoteItem(
     noteUi: NoteUi,
-    onNoteSelected: () -> Unit
+    onNoteSelected: (Int) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
             .padding(8.dp)
-            .clickable { onNoteSelected() }
+            .clickable { onNoteSelected(noteUi.id) }
     ) {
         NoteHeaderSubText(title = noteUi.title, subText = noteUi.content)
     }

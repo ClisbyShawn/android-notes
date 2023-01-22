@@ -21,7 +21,7 @@ import com.clisby.shawn.note.presentation.model.NoteUiListState
 fun NoteListScreen(
     state: NoteUiListState,
     onAddNote: () -> Unit,
-    onNoteSelected: () -> Unit
+    onNoteSelected: (Int) -> Unit
 ) {
     Scaffold(
         content = {
