@@ -1,60 +1,54 @@
 package com.clisby.shawn.note.presentation.composables.screen
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.clisby.shawn.note.presentation.composables.components.NoteError
 import com.clisby.shawn.note.presentation.composables.components.NoteLoading
 import com.clisby.shawn.note.presentation.composables.components.note.NoteDetail
 import com.clisby.shawn.note.presentation.model.NoteUi
 import com.clisby.shawn.note.presentation.model.NoteUiDetailState
+import com.clisby.shawn.note.presentation.model.NoteUiDetailState.Error
+import com.clisby.shawn.note.presentation.model.NoteUiDetailState.Existing
+import com.clisby.shawn.note.presentation.model.NoteUiDetailState.Loading
+import com.clisby.shawn.note.presentation.model.NoteUiDetailState.NewNote
+import com.clisby.shawn.note.presentation.viewModel.NoteDetailViewModel
 
 @Composable
 fun NoteScreen(
-    state: NoteUiDetailState
+    noteDetailViewModel: NoteDetailViewModel = hiltViewModel(),
+    onNoteSaved: () -> Unit
 ) {
-    when (state) {
-        NoteUiDetailState.Loading -> NoteLoading()
-        NoteUiDetailState.NewNote -> NoteDetail(
-            onNoteSaved = {},
-            onTitleChanged = {},
-            onContentChanged = {}
+    val detailState: NoteUiDetailState by noteDetailViewModel.noteState.collectAsState()
+
+    when (val state = detailState) {
+        Loading -> NoteLoading()
+        NewNote -> NoteDetail(
+            onNoteSaved = { title, content ->
+                noteDetailViewModel.saveNote(
+                    noteUi = NoteUi(
+                        title = title,
+                        content = content
+                    )
+                )
+                onNoteSaved()
+            }
         )
-        is NoteUiDetailState.Existing -> NoteDetail(
-            onNoteSaved = {},
-            onTitleChanged = {},
-            onContentChanged = {})
-        is NoteUiDetailState.Error -> NoteError(state.errorMessage)
+
+        is Existing -> NoteDetail(
+                noteUi = state.noteUi,
+                onNoteSaved = { title, content ->
+                    noteDetailViewModel.saveNote(
+                        noteUi = NoteUi(
+                            id = state.noteUi.id,
+                            title = title,
+                            content = content
+                        )
+                    )
+                    onNoteSaved()
+                })
+
+        is Error -> NoteError(state.errorMessage)
     }
-}
-
-@Preview
-@Composable
-fun PreviewLoadingNoteScreen() {
-    NoteScreen(NoteUiDetailState.Loading)
-}
-
-@Preview
-@Composable
-fun PreviewErrorNoteScreen() {
-    NoteScreen(NoteUiDetailState.Error(errorMessage = "Uh-Oh!"))
-}
-
-@Preview
-@Composable
-fun PreviewNewNoteScreen() {
-    NoteScreen(NoteUiDetailState.NewNote)
-}
-
-@Preview
-@Composable
-fun PreviewExistingNoteScreen() {
-    NoteScreen(
-        NoteUiDetailState.Existing(
-            noteUi = NoteUi(
-                id = 1,
-                title = "Title #1",
-                content = "Content"
-            )
-        )
-    )
 }

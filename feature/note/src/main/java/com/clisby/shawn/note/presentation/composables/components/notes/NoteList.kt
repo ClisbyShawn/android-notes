@@ -15,7 +15,7 @@ import com.clisby.shawn.note.presentation.model.NoteUi
 @Composable
 fun NoteList(
     notes: List<NoteUi>,
-    onNoteSelected: () -> Unit
+    onNoteSelected: (Int) -> Unit
 ) {
 
     notes.ifEmpty {
